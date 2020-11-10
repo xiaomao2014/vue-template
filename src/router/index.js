@@ -2,6 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Page2Routes from './Page2'
 
+// vue router 导航 连续点击多次路由报错解决方法。放在use之前
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err);
+};
+
 Vue.use(VueRouter);
 
 const routes = [
