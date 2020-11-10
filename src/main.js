@@ -1,14 +1,20 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from '@/router'
+import router from "@/router"
 import store from "./store";
+
 // 引入common.css、reset.css
 import "../static/css/common.css";
 import "../static/css/reset.css";
+
 // 引入element-ui
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
+
+// 全局引入lodash
+import _ from "lodash";
+Vue.prototype._ = _
 
 Vue.config.productionTip = false;
 // 环境变量

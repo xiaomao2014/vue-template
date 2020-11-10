@@ -11,6 +11,9 @@
 </template>
 
 <script>
+import _ from "lodash";
+// _.chunk()根据size参数将数组分组，size是每一组的长度。如果数组不能均分，最后一组就会包含剩下的元素。
+console.log(_.chunk(["a", "b", "c", "d"], 1));
 export default {
   name: "Page3",
   // mixins: [],
