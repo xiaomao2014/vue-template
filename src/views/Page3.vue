@@ -1,12 +1,24 @@
 <template>
   <div class="inner-box">
     <h1>Page3</h1>
+    <h3>1.路由传参跳转</h3>
     <el-button
       type="primary"
       @click="jump('我是page3路由传参到page4的参数内容')"
     >
       page3路由传值到page4
     </el-button>
+    <h3>2.日期选择器-选择月</h3>
+    <div>
+      <el-date-picker
+        v-model="value"
+        type="month"
+        placeholder="选择月"
+        @change="changeDatePicker"
+        value-format="yyyy-MM"
+      >
+      </el-date-picker>
+    </div>
   </div>
 </template>
 
@@ -20,7 +32,10 @@ export default {
   components: {},
   // props,
   data () {
-    return {}
+    return {
+      // 日期选择器值
+      value: ''
+    }
   },
   created () {},
   mounted () {},
@@ -30,6 +45,9 @@ export default {
       this.$router.push({
         path: `/Page4/${id}`
       })
+    },
+    changeDatePicker (e) {
+      console.log(e) // 2020-07
     }
   },
   computed: {},
