@@ -25,6 +25,11 @@
         :data="tableData"
         style="width: 100%"
         @row-click="rowClick"
+        ref="orderTable"
+        :border="true"
+        height="180"
+        @mouseover.native="tableMouseOverHandler"
+        @mouseleave.native="tableMouseLeaveHandler"
       >
         <el-table-column
           prop="date"
@@ -58,7 +63,30 @@ export default {
     return {
       // 日期选择器值
       value: '',
+      speed: 0,
+      isAutoPlay: true,
+      playInterval: null,
       tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎1',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎2',
+          address: '上海市普陀区金沙江路 1517 弄'
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎3',
+          address: '上海市普陀区金沙江路 1519 弄'
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎4',
+          address: '上海市普陀区金沙江路 1516 弄'
+        },
         {
           date: '2016-05-02',
           name: '王小虎1',
@@ -83,7 +111,10 @@ export default {
     };
   },
   created () {},
-  mounted () {},
+  mounted () {
+    this.speed = 1;
+    this.playInterval = setInterval(this.tableAutoPlay, 20);
+  },
   methods: {
     jump (id) {
       // 直接调用$router.push 实现携带参数的跳转
@@ -97,6 +128,31 @@ export default {
     rowClick (row) {
       console.log(row)
       console.log(row.name)
+    },
+    tableAutoPlay () {
+      if (
+          this.isAutoPlay &&
+          this.speed &&
+          this.$refs['orderTable'] &&
+          this.$refs['orderTable'].$refs.bodyWrapper
+      ) {
+        let offsetHeight = this.$refs['orderTable'].$refs.bodyWrapper
+            .offsetHeight
+        let scrollHeight = this.$refs['orderTable'].$refs.bodyWrapper
+            .scrollHeight
+        let scrollTop = this.$refs['orderTable'].$refs.bodyWrapper.scrollTop
+        if (scrollTop + offsetHeight < scrollHeight) {
+          this.$refs['orderTable'].$refs.bodyWrapper.scrollTop += this.speed
+        } else {
+          this.$refs['orderTable'].$refs.bodyWrapper.scrollTop = 0
+        }
+      }
+    },
+    tableMouseOverHandler() {
+      this.isAutoPlay = false
+    },
+    tableMouseLeaveHandler() {
+      this.isAutoPlay = true
     }
   },
   computed: {},
