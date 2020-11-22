@@ -9,4 +9,19 @@ const store = new Vuex.Store({
     common
   }
 });
-export default store
+
+// Vuex 支持在开发过程中热重载 mutation、module、action 和 getter。
+if (module.hot) {
+  module.hot.accept([
+    './common/index'
+  ], () => {
+    const common = require('./common/index').default
+    store.hotUpdate({
+      modules: {
+        common
+      }
+    });
+  });
+}
+
+export default store;
