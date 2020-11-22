@@ -47,13 +47,29 @@
         </el-table-column>
       </el-table>
     </div>
+    <h3>4.Vue基础使用</h3>
+    <div>
+      <div>vuex中common文件中的getters数据：{{isChineseLanguage}}</div>
+      <div>vuex中common文件中state的count数据：{{count}}</div>
+      <el-button type="primary" @click="increment">
+        点我+1
+      </el-button>
+    </div>
   </div>
 </template>
 
 <script>
+// 引入lodash
 import _ from "lodash";
 // _.chunk()根据size参数将数组分组，size是每一组的长度。如果数组不能均分，最后一组就会包含剩下的元素。
 console.log(_.chunk(["a", "b", "c", "d"], 1));
+// 引入mapState
+import {
+  mapMutations,
+  mapState,
+  mapActions,
+  mapGetters
+} from 'vuex'
 export default {
   name: "Page3",
   // mixins: [],
@@ -116,6 +132,11 @@ export default {
     this.playInterval = setInterval(this.tableAutoPlay, 20);
   },
   methods: {
+    ...mapActions([
+    ]),
+    ...mapMutations([
+      'CHANGE_COUNT_M'
+    ]),
     jump (id) {
       // 直接调用$router.push 实现携带参数的跳转
       this.$router.push({
@@ -153,9 +174,19 @@ export default {
     },
     tableMouseLeaveHandler() {
       this.isAutoPlay = true
+    },
+    increment () {
+      this.CHANGE_COUNT_M(1)
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters({
+      isChineseLanguage: 'isChineseLanguage'
+    }),
+    ...mapState({
+      count: state => state.common.count
+    })
+  },
   watch: {}
   // updated () {},
   // beforeRouteUpdate () {},

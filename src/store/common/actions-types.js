@@ -1,0 +1,2 @@
+// 获取 目标目标汇率
+export const GET_TRANSITION_RATE_ACTION = 'GET_TRANSITION_RATE_ACTION'
