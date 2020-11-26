@@ -63,6 +63,7 @@
     <div>
       <img class="logo" src="../assets/images/logo.png" alt="logo">
     </div>
+    <div>{{testMixins}}</div>
   </div>
 </template>
 
