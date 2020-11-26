@@ -64,6 +64,7 @@
       <img class="logo" src="../assets/images/logo.png" alt="logo">
     </div>
     <div>{{testMixins}}</div>
+    <div>{{$keep2Num(5.123568)}}<br>{{$keep2Num(5.899568)}}</div>
   </div>
 </template>
 
