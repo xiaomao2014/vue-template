@@ -1,14 +1,14 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import Page2Routes from './Page2'
 
 // vue router 导航 连续点击多次路由报错解决方法。放在use之前
-const originalPush = VueRouter.prototype.push;
+const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
-  return originalPush.call(this, location).catch(err => err);
-};
+  return originalPush.call(this, location).catch(err => err)
+}
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   // 根路由
@@ -17,58 +17,58 @@ const routes = [
     redirect: 'Home'
   },
   {
-    path: "/Home",
-    name: "Home",
+    path: '/Home',
+    name: 'Home',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Home" */ "@/views/Home.vue")
+    component: () => import(/* webpackChunkName: 'Home' */ '@/views/Home.vue')
   },
   ...Page2Routes,
   /*{
-    path: "/Page2",
-    name: "Page2",
-    component: () => import(/!* webpackChunkName: "Page2" *!/ "@/views/Page2.vue"),
+    path: '/Page2',
+    name: 'Page2',
+    component: () => import(/!* webpackChunkName: 'Page2' *!/ '@/views/Page2.vue'),
     redirect: '/Page2/Page2-1',
     children: [
       {
         path: 'Page2-1',
         name: 'Page2-1',
-        component: () => import(/!* webpackChunkName: "Page2-1" *!/ "@/components/Page2/Page2-1.vue")
+        component: () => import(/!* webpackChunkName: 'Page2-1' *!/ '@/components/Page2/Page2-1.vue')
       },
       {
         path: 'Page2-2',
         name: 'Page2-2',
-        component: () => import(/!* webpackChunkName: "Page2-2" *!/ "@/components/Page2/Page2-2.vue")
+        component: () => import(/!* webpackChunkName: 'Page2-2' *!/ '@/components/Page2/Page2-2.vue')
       },
       {
         path: 'Page2-3',
         name: 'Page2-3',
-        component: () => import(/!* webpackChunkName: "Page2-3" *!/ "@/components/Page2/Page2-3.vue")
+        component: () => import(/!* webpackChunkName: 'Page2-3' *!/ '@/components/Page2/Page2-3.vue')
       }
     ]
   },*/
   {
-    path: "/Page3",
-    name: "Page3",
-    component: () => import(/* webpackChunkName: "Page3" */ "../views/Page3.vue")
+    path: '/Page3',
+    name: 'Page3',
+    component: () => import(/* webpackChunkName: 'Page3' */ '../views/Page3.vue')
   },
   {
-    path: "/Page4/:id",
-    name: "Page4",
-    component: () => import(/* webpackChunkName: "Page4" */ "../views/Page4.vue")
+    path: '/Page4/:id',
+    name: 'Page4',
+    component: () => import(/* webpackChunkName: 'Page4' */ '../views/Page4.vue')
   },
   {
-    path: "/Page5",
-    name: "Page5",
-    component: () => import(/* webpackChunkName: "Page5" */ "../views/Page5.vue")
+    path: '/Page5',
+    name: 'Page5',
+    component: () => import(/* webpackChunkName: 'Page5' */ '../views/Page5.vue')
   }
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
-});
+})
 
-export default router;
+export default router

@@ -8,6 +8,7 @@
     >
       page3路由传值到page4
     </el-button>
+
     <h3>2.日期选择器-选择月</h3>
     <div>
       <el-date-picker
@@ -19,6 +20,7 @@
       >
       </el-date-picker>
     </div>
+
     <h3>3.表格展示-点击行触发事件</h3>
     <div class="text-table-box">
       <el-table
@@ -47,6 +49,7 @@
         </el-table-column>
       </el-table>
     </div>
+
     <h3>4.Vue基础使用</h3>
     <div>
       <div>vuex中common文件中的getters数据：{{isChineseLanguage}}</div>
@@ -55,14 +58,19 @@
         点我+1
       </el-button>
     </div>
+
+    <h3>5.图片的使用</h3>
+    <div>
+      <img class="logo" src="../assets/images/logo.png" alt="logo">
+    </div>
   </div>
 </template>
 
 <script>
 // 引入lodash
-import _ from "lodash";
+import _ from 'lodash'
 // _.chunk()根据size参数将数组分组，size是每一组的长度。如果数组不能均分，最后一组就会包含剩下的元素。
-console.log(_.chunk(["a", "b", "c", "d"], 1));
+console.log(_.chunk(['a', 'b', 'c', 'd'], 1));
 // 引入mapState
 import {
   mapMutations,
@@ -71,7 +79,7 @@ import {
   mapGetters
 } from 'vuex'
 export default {
-  name: "Page3",
+  name: 'Page3',
   // mixins: [],
   components: {},
   // props,
@@ -83,6 +91,11 @@ export default {
       isAutoPlay: true,
       playInterval: null,
       tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎1',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
         {
           date: '2016-05-02',
           name: '王小虎1',
@@ -197,5 +210,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .inner-box {
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+  }
 </style>
