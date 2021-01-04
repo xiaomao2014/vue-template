@@ -33,27 +33,18 @@
         @mouseover.native="tableMouseOverHandler"
         @mouseleave.native="tableMouseLeaveHandler"
       >
-        <el-table-column
-          prop="date"
-          label="日期"
-          width="180">
+        <el-table-column prop="date" label="日期" width="180">
         </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="180">
+        <el-table-column prop="name" label="姓名" width="180">
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址">
-        </el-table-column>
+        <el-table-column prop="address" label="地址"> </el-table-column>
       </el-table>
     </div>
 
     <h3>4.Vue基础使用</h3>
     <div>
-      <div>vuex中common文件中的getters数据：{{isChineseLanguage}}</div>
-      <div>vuex中common文件中state的count数据：{{count}}</div>
+      <div>vuex中common文件中的getters数据：{{ isChineseLanguage }}</div>
+      <div>vuex中common文件中state的count数据：{{ count }}</div>
       <el-button type="primary" @click="increment">
         点我+1
       </el-button>
@@ -61,10 +52,10 @@
 
     <h3>5.图片的使用</h3>
     <div>
-      <img class="logo" src="../assets/images/logo.png" alt="logo">
+      <img class="logo" src="../assets/images/logo.png" alt="logo" />
     </div>
-    <div>{{testMixins}}</div>
-    <div>{{$keep2Num(5.123568)}}<br>{{$keep2Num(5.899568)}}</div>
+    <div>{{ testMixins }}</div>
+    <div>{{ $keep2Num(5.123568) }}<br />{{ $keep2Num(5.899568) }}</div>
   </div>
 </template>
 
@@ -72,20 +63,15 @@
 // 引入lodash
 import _ from 'lodash'
 // _.chunk()根据size参数将数组分组，size是每一组的长度。如果数组不能均分，最后一组就会包含剩下的元素。
-console.log(_.chunk(['a', 'b', 'c', 'd'], 1));
+console.log(_.chunk(['a', 'b', 'c', 'd'], 1))
 // 引入mapState
-import {
-  mapMutations,
-  mapState,
-  mapActions,
-  mapGetters
-} from 'vuex'
+import { mapMutations, mapState, mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Page3',
   // mixins: [],
   components: {},
   // props,
-  data () {
+  data() {
     return {
       // 日期选择器值
       value: '',
@@ -139,43 +125,40 @@ export default {
           address: '上海市普陀区金沙江路 1516 弄'
         }
       ]
-    };
+    }
   },
-  created () {},
-  mounted () {
-    this.speed = 1;
-    this.playInterval = setInterval(this.tableAutoPlay, 20);
+  created() {},
+  mounted() {
+    this.speed = 1
+    this.playInterval = setInterval(this.tableAutoPlay, 20)
   },
   methods: {
-    ...mapActions([
-    ]),
-    ...mapMutations([
-      'CHANGE_COUNT_M'
-    ]),
-    jump (id) {
+    ...mapActions([]),
+    ...mapMutations(['CHANGE_COUNT_M']),
+    jump(id) {
       // 直接调用$router.push 实现携带参数的跳转
       this.$router.push({
         path: `/Page4/${id}`
       })
     },
-    changeDatePicker (e) {
+    changeDatePicker(e) {
       console.log(e) // 2020-07
     },
-    rowClick (row) {
+    rowClick(row) {
       console.log(row)
       console.log(row.name)
     },
-    tableAutoPlay () {
+    tableAutoPlay() {
       if (
-          this.isAutoPlay &&
-          this.speed &&
-          this.$refs['orderTable'] &&
-          this.$refs['orderTable'].$refs.bodyWrapper
+        this.isAutoPlay &&
+        this.speed &&
+        this.$refs['orderTable'] &&
+        this.$refs['orderTable'].$refs.bodyWrapper
       ) {
         let offsetHeight = this.$refs['orderTable'].$refs.bodyWrapper
-            .offsetHeight
+          .offsetHeight
         let scrollHeight = this.$refs['orderTable'].$refs.bodyWrapper
-            .scrollHeight
+          .scrollHeight
         let scrollTop = this.$refs['orderTable'].$refs.bodyWrapper.scrollTop
         if (scrollTop + offsetHeight < scrollHeight) {
           this.$refs['orderTable'].$refs.bodyWrapper.scrollTop += this.speed
@@ -190,7 +173,7 @@ export default {
     tableMouseLeaveHandler() {
       this.isAutoPlay = true
     },
-    increment () {
+    increment() {
       this.CHANGE_COUNT_M(1)
     }
   },
@@ -212,10 +195,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .inner-box {
-    .logo {
-      width: 100px;
-      height: 100px;
-    }
+.inner-box {
+  .logo {
+    width: 100px;
+    height: 100px;
   }
+}
 </style>
