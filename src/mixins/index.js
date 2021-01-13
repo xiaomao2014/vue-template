@@ -1,18 +1,15 @@
-import {
-  keep2Num,
-  removeStore
-} from '../utils/tool'
+import { keep2Num, removeStore } from '../utils/tool'
 let mixin = {
-  data () {
+  data() {
     return {
       testMixins: '我是全局的：testMixins'
     }
   },
   methods: {
-    $removeStore (name) {
+    $removeStore(name) {
       removeStore(name)
     },
-    $keep2Num (num) {
+    $keep2Num(num) {
       return keep2Num(num)
     }
   },

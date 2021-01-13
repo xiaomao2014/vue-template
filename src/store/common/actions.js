@@ -1,6 +1,5 @@
-import {
-  // GET_TRANSITION_RATE_ACTION
-} from './actions-types'
+import // GET_TRANSITION_RATE_ACTION
+'./actions-types'
 export default {
   // 获取目标汇率
   // async [GET_TRANSITION_RATE_ACTION] ({commit}, {params, activeConvertCurrencyObj}) {
@@ -11,4 +10,4 @@ export default {
   //     activeConvertCurrencyObj
   //   });
   // }
-};
+}

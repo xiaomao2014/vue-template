@@ -5,17 +5,16 @@
 </template>
 
 <script>
-
 export default {
-  name: "Page5",
+  name: 'Page5',
   // mixins: [],
   components: {},
   // props,
-  data () {
+  data() {
     return {}
   },
-  created () {},
-  mounted () {},
+  created() {},
+  mounted() {},
   methods: {},
   computed: {},
   watch: {}
@@ -27,6 +26,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -2,7 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import store from './store'
+// 引入全局mixins
 import Mixin from './mixins'
+
+// 引入全局注册组件global
+import './global/index'
 
 // 引入common.css、reset.css
 import '../static/css/common.css'
@@ -17,6 +21,9 @@ Vue.mixin(Mixin)
 // 全局引入lodash
 import _ from 'lodash'
 Vue.prototype._ = _
+
+// 引入axios
+// import axios from 'axios'
 
 Vue.config.productionTip = false
 // 环境变量

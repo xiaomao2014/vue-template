@@ -4,7 +4,7 @@ import Page2Routes from './Page2'
 
 // vue router 导航 连续点击多次路由报错解决方法。放在use之前
 const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push (location) {
+VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
@@ -51,22 +51,25 @@ const routes = [
   {
     path: '/Page3',
     name: 'Page3',
-    component: () => import(/* webpackChunkName: 'Page3' */ '../views/Page3.vue')
+    component: () =>
+      import(/* webpackChunkName: 'Page3' */ '../views/Page3.vue')
   },
   {
     path: '/Page4/:id',
     name: 'Page4',
-    component: () => import(/* webpackChunkName: 'Page4' */ '../views/Page4.vue')
+    component: () =>
+      import(/* webpackChunkName: 'Page4' */ '../views/Page4.vue')
   },
   {
     path: '/Page5',
     name: 'Page5',
-    component: () => import(/* webpackChunkName: 'Page5' */ '../views/Page5.vue')
+    component: () =>
+      import(/* webpackChunkName: 'Page5' */ '../views/Page5.vue')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

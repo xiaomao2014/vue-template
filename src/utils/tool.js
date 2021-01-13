@@ -42,7 +42,7 @@ export const setCookie = (name, value, times) => {
   let expires
   if (times) {
     let date = new Date()
-    date.setTime(date.getTime() + (times * 24 * 60 * 60 * 1000))
+    date.setTime(date.getTime() + times * 24 * 60 * 60 * 1000)
     expires = `; expires=${date.toGMTString()}`
   } else {
     expires = ''
@@ -98,7 +98,7 @@ export const removeCookie = name => {
  *  'BIH': 国际标准时分秒 (09ˋ40′32″)
  */
 export const timeFilter = (date, methods, daySplitSymbol = '-') => {
-  function formatTime (time) {
+  function formatTime(time) {
     return `${time}`.padStart(2, '0')
   }
 

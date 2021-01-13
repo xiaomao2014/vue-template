@@ -10,11 +10,7 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        <el-menu-item
-          v-for="item in navMenu"
-          :index="item.id"
-          :key="item.id"
-        >
+        <el-menu-item v-for="item in navMenu" :index="item.id" :key="item.id">
           {{ item.name }}
         </el-menu-item>
       </el-menu>
@@ -24,11 +20,11 @@
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
   // mixins: [],
   // components: {},
   // props,
-  data () {
+  data() {
     return {
       activeIndex: '1',
       navMenu: [
@@ -51,7 +47,8 @@ export default {
           id: '4',
           url: '/Page4',
           name: '第四页'
-        },{
+        },
+        {
           id: '5',
           url: '/Page5',
           name: '第五页'
@@ -59,11 +56,11 @@ export default {
       ]
     }
   },
-  created () {},
-  mounted () {},
+  created() {},
+  mounted() {},
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
       this.navMenu.forEach(item => {
         if (key === item.id) {
           console.log(key)

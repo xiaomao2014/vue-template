@@ -6,15 +6,15 @@
 
 <script>
 export default {
-  name: "Page2-1",
+  name: 'Page2-1',
   // mixins: [],
   components: {},
   // props,
-  data () {
-    return {};
+  data() {
+    return {}
   },
-  created () {},
-  mounted () {},
+  created() {},
+  mounted() {},
   methods: {},
   computed: {},
   watch: {}
@@ -23,10 +23,7 @@ export default {
   // beforeDestroy () {},
   // destroyed () {},
   // filters: {},
-};
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
-
+<style lang="scss" scoped></style>

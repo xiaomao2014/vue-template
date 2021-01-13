@@ -54,8 +54,21 @@
     <div>
       <img class="logo" src="../assets/images/logo.png" alt="logo" />
     </div>
+    <h3>6.Mixins使用</h3>
     <div>{{ testMixins }}</div>
+    <h3>7.全局封装方法使用</h3>
     <div>{{ $keep2Num(5.123568) }}<br />{{ $keep2Num(5.899568) }}</div>
+    <h3>8.全局封装组件字体图标的使用</h3>
+    <Iconfont iconName="el-icon-edit" class="icon"></Iconfont>
+    <h3>9.全局封装组件弹窗的使用</h3>
+    <el-button type="primary" @click="openDialog">
+      打开弹窗
+    </el-button>
+    <GlobalDialog
+      :title="title"
+      :dialogVisible="dialogVisible"
+      @closeDialog="closeDialogHandle"
+    />
   </div>
 </template>
 
@@ -124,7 +137,10 @@ export default {
           name: '王小虎4',
           address: '上海市普陀区金沙江路 1516 弄'
         }
-      ]
+      ],
+      // 弹窗组件数据
+      title: '弹窗标题',
+      dialogVisible: false
     }
   },
   created() {},
@@ -175,6 +191,13 @@ export default {
     },
     increment() {
       this.CHANGE_COUNT_M(1)
+    },
+    openDialog() {
+      this.title = '我是定制的标题'
+      this.dialogVisible = true
+    },
+    closeDialogHandle() {
+      this.dialogVisible = false
     }
   },
   computed: {
@@ -199,6 +222,10 @@ export default {
   .logo {
     width: 100px;
     height: 100px;
+  }
+  .icon {
+    font-size: 30px;
+    color: red;
   }
 }
 </style>

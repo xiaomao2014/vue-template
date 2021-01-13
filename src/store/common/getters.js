@@ -1,5 +1,5 @@
 export default {
-  isChineseLanguage (state) {
+  isChineseLanguage(state) {
     return state.language === 'zh_CN'
   }
 }

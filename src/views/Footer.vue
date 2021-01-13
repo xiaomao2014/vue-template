@@ -6,15 +6,15 @@
 
 <script>
 export default {
-  name: "Footer",
+  name: 'Footer',
   // mixins: [],
   // components: {},
   // props,
-  data () {
+  data() {
     return {}
   },
-  created () {},
-  mounted () {},
+  created() {},
+  mounted() {},
   methods: {},
   computed: {},
   watch: {}
@@ -32,6 +32,6 @@ export default {
   height: 200px;
   box-sizing: border-box;
   min-width: 1100px;
-  background-color: #FFEEBC;
+  background-color: #ffeebc;
 }
 </style>

@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
     <div class="outer-box">
-      <router-view/>
+      <router-view />
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 <script>
-import Header from "@/views/Header.vue";
-import Footer from "@/views/Footer.vue";
+import Header from '@/views/Header.vue'
+import Footer from '@/views/Footer.vue'
 export default {
-  name: "App",
+  name: 'App',
   // mixins: [],
   components: {
     Header,
     Footer
   },
   // props,
-  data () {
-    return {};
+  data() {
+    return {}
   },
-  created () {},
-  mounted () {},
+  created() {},
+  mounted() {},
   methods: {},
   computed: {},
   watch: {}
@@ -31,7 +31,7 @@ export default {
   // beforeDestroy () {},
   // destroyed () {},
   // filters: {},
-};
+}
 </script>
 
 <style lang="scss">
