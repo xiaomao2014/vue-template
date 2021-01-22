@@ -2,15 +2,20 @@
   <div class="header-box">
     <div class="inner-box">
       <el-menu
-        :default-active="activeIndex"
+        :default-active="this.$route.path"
+        router
         class="header-el-menu"
         mode="horizontal"
-        @select="handleSelect"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        <el-menu-item v-for="item in navMenu" :index="item.id" :key="item.id">
+        <!--@select="handleSelect"-->
+        <el-menu-item
+          v-for="(item, index) in navMenu"
+          :index="item.url"
+          :key="index"
+        >
           {{ item.name }}
         </el-menu-item>
       </el-menu>
@@ -35,7 +40,7 @@ export default {
         },
         {
           id: '2',
-          url: '/Page2',
+          url: '/Page2/Page2-1',
           name: '第二页'
         },
         {
@@ -43,11 +48,11 @@ export default {
           url: '/Page3',
           name: '第三页'
         },
-        {
-          id: '4',
-          url: '/Page4',
-          name: '第四页'
-        },
+        // {
+        //   id: '4',
+        //   url: '/Page4',
+        //   name: '第四页'
+        // },
         {
           id: '5',
           url: '/Page5',
