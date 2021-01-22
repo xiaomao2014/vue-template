@@ -15,7 +15,7 @@ module.exports = {
       errors: true
     },
     host: 'localhost',
-    port: 8080, // 端口号
+    port: 8081, // 端口号
     open: true, // 配置后自动启动浏览器
     hotOnly: true, // 热更新
     // 配置跨域代理
@@ -37,12 +37,12 @@ module.exports = {
           '^/v1': '/v1'
         }
       }
-    },
+    }
     // Webpack相关配置
-    configureWebpack: {
-      // 调整 webpack 配置最简单的方式就是在 vue.config.js 中的 configureWebpack 选项提供一个对象：
-      // 有些 webpack 选项是基于 vue.config.js 中的值设置的，所以不能直接修改。例如你应该修改 vue.config.js 中的 outputDir 选项而不是修改 output.path；你应该修改 vue.config.js 中的 publicPath 选项而不是修改 output.publicPath。这样做是因为 vue.config.js 中的值会被用在配置里的多个地方，以确保所有的部分都能正常工作在一起。
-    },
+    // configureWebpack: {
+    //   // 调整 webpack 配置最简单的方式就是在 vue.config.js 中的 configureWebpack 选项提供一个对象：
+    //   // 有些 webpack 选项是基于 vue.config.js 中的值设置的，所以不能直接修改。例如你应该修改 vue.config.js 中的 outputDir 选项而不是修改 output.path；你应该修改 vue.config.js 中的 publicPath 选项而不是修改 output.publicPath。这样做是因为 vue.config.js 中的值会被用在配置里的多个地方，以确保所有的部分都能正常工作在一起。
+    // },
     // 如果你需要基于环境有条件地配置行为，或者想要直接修改配置，那就换成一个函数 (该函数会在环境变量被设置之后懒执行)。该方法的第一个参数会收到已经解析好的配置。在函数内，你可以直接修改配置，或者返回一个将会被合并的对象：
     // configureWebpack: config => {
     //   if (process.env.NODE_ENV === 'production') {
@@ -52,20 +52,20 @@ module.exports = {
     //   }
     // }
     // chainWebpack 是一个函数，会接收一个基于 webpack-chain 的 ChainableConfig 实例。允许对内部的 webpack 配置进行更细粒度的修改。
-    chainWebpack: config => {
-      config.module
-        .rule('vue')
-        .use('vue-loader')
-        // .loader('vue-loader')
-        .tap(options => {
-          // 修改它的选项...
-          // options.compilerOptions.preserveWhitespace = true // 模版中 HTML 标签之间的空格将会被忽略
-          return options
-        })
-    },
+    // chainWebpack: config => {
+    //   config.module
+    //     .rule('vue')
+    //     .use('vue-loader')
+    //     // .loader('vue-loader')
+    //     .tap(options => {
+    //       // 修改它的选项...
+    //       // options.compilerOptions.preserveWhitespace = true // 模版中 HTML 标签之间的空格将会被忽略
+    //       return options
+    //     })
+    // },
     // css相关配置
-    css: {
-      // css相关选项配置
-    }
+    // css: {
+    //   // css相关选项配置
+    // }
   }
 }

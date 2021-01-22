@@ -6,7 +6,7 @@ import QS from 'qs'
 
 // 环境判断-设置默认请求地址
 if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://localhost:8080'
+  axios.defaults.baseURL = 'http://localhost:8081'
 } else {
   axios.defaults.baseURL = 'http://www.baidu.com'
 }
