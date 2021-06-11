@@ -69,6 +69,8 @@
       :dialogVisible="dialogVisible"
       @closeDialog="closeDialogHandle"
     />
+    <h3>10、echarts图表使用</h3>
+    <mapData />
   </div>
 </template>
 
@@ -79,10 +81,11 @@ import _ from 'lodash'
 console.log(_.chunk(['a', 'b', 'c', 'd'], 1))
 // 引入mapState
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex'
+import mapData from '@/components/Page3/mapData'
 export default {
   name: 'Page3',
   // mixins: [],
-  components: {},
+  components: { mapData },
   // props,
   data() {
     return {

@@ -4,6 +4,9 @@ import router from '@/router'
 import store from './store'
 // 引入全局mixins
 import Mixin from './mixins'
+// 引入echarts
+import echarts from 'echarts'
+// import * as echarts from 'echarts'
 
 // 引入全局注册组件global
 import './global/index'
@@ -21,6 +24,8 @@ Vue.mixin(Mixin)
 // 全局引入lodash
 import _ from 'lodash'
 Vue.prototype._ = _
+// 使用echarts
+Vue.prototype.$echarts = echarts
 
 // 引入axios
 // import axios from 'axios'
