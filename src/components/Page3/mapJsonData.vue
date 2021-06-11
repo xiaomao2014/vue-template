@@ -1,56 +1,13 @@
 <template>
   <div class="inner-box">
-    <div>使用依赖包中的js文件创建地图</div>
-    <div class="main" id="main" style="width: 800px;height: 500px;"></div>
+    <div class="map-box" id="map-box" style="width: 800px;height: 500px;"></div>
   </div>
 </template>
 
 <script>
-require('echarts/map/js/china')
-const provinceName = [
-  'anhui',
-  'aomen',
-  'beijing',
-  'chongqing',
-  'fujian',
-  'gansu',
-  'guangdong',
-  'guangxi',
-  'guizhou',
-  'hainan',
-  'hebei',
-  'heilongjiang',
-  'henan',
-  'hubei',
-  'hunan',
-  'jiangsu',
-  'jiangxi',
-  'jilin',
-  'liaoning',
-  'neimenggu',
-  'ningxia',
-  'qinghai',
-  'shandong',
-  'shanghai',
-  'shanxi',
-  'shanxi1',
-  'sichuan',
-  'taiwan',
-  'tianjin',
-  'xianggang',
-  'xinjiang',
-  'xizang',
-  'yunnan',
-  'zhejiang'
-]
-function getProvinceName(item) {
-  return require('echarts/map/js/province/' + item + '.js')
-}
-provinceName.forEach(item => {
-  getProvinceName(item)
-})
+import echarts from 'echarts'
 export default {
-  name: 'mapData',
+  name: 'mapJsonData',
   // mixins: [],
   components: {},
   // props,
@@ -89,7 +46,40 @@ export default {
         '山东',
         '西藏'
       ],
-      geoMap: 'china',
+      myMapChart: null,
+      provinceMap: {
+        湖北: 'hubei',
+        黑龙江: 'heilongjiang',
+        湖南: 'hunan',
+        广东: 'guangdong',
+        海南: 'hainan',
+        广西: 'guangxi',
+        重庆: 'chongqing',
+        四川: 'sichuan',
+        贵州: 'guizhou',
+        云南: 'yunnan',
+        陕西: 'shanxi1',
+        甘肃: 'gansu',
+        青海: 'qinghai',
+        宁夏: 'ningxia',
+        新疆: 'xinjiang',
+        北京: 'beijing',
+        河南: 'henan',
+        天津: 'tianjin',
+        河北: 'hebei',
+        山西: 'shanxi',
+        内蒙古: 'neimenggu',
+        辽宁: 'liaoning',
+        吉林: 'jilin',
+        上海: 'shanghai',
+        江苏: 'jiangsu',
+        浙江: 'zhejiang',
+        安徽: 'anhui',
+        福建: 'fujian',
+        江西: 'jiangxi',
+        山东: 'shandong',
+        西藏: 'xizang'
+      },
       exampleData1: [
         {
           bearerNetWorkScore: 55.89,
@@ -130,15 +120,39 @@ export default {
   },
   created() {},
   mounted() {
-    this.init()
+    this.initMap('china')
   },
   methods: {
-    init() {
-      let myChart = this.$echarts.init(document.getElementById('main'))
-      let chartOption = {
+    initMap(val) {
+      console.log(val)
+      this.myMapChart = this.$echarts.init(document.getElementById('map-box'))
+      this.$axios.get('/map/json/' + val + '.json').then(res => {
+        console.log(res)
+        echarts.registerMap(val, res.data)
+        let option = this.getOption(val)
+        this.myMapChart.clear() // 清空图画
+        this.myMapChart.setOption(option)
+        this.myMapChart.off('click') // 点击之前要先清除点击事件，否则会出现多次点击的效果
+        this.myMapChart.on('click', params => {
+          console.log(params)
+          console.log(params.name)
+          if (this.provinceList.includes(params.name)) {
+            this.initMap(this.provinceMap[params.name])
+          } else {
+            this.initMap('china')
+          }
+        })
+        window.addEventListener('resize', function() {
+          this.myMapChart.resize()
+        })
+      })
+    },
+    getOption(val) {
+      console.log(val)
+      let option = {
         geo: {
           type: 'map',
-          map: this.geoMap,
+          map: val,
           zoom: 1.2, // 设置初始化的缩放比例
           // center: [87.617733, 43.792818], // 设置地图中心点的坐标
           // 地图区域的多边形 图形样式
@@ -206,41 +220,12 @@ export default {
             label: {
               show: true
             },
-            data:
-              this.geoMap === 'china' ? this.exampleData1 : this.exampleData2
+            data: val === 'china' ? this.exampleData1 : this.exampleData2
           }
         ]
       }
-      myChart.clear() // 清空图画
-      myChart.setOption(chartOption)
-      myChart.off('click') // 点击之前要先清除点击事件，否则会出现多次点击的效果
-      myChart.on('click', params => {
-        // console.log(params)
-        console.log(params.name)
-        if (this.provinceList.includes(params.name)) {
-          this.geoMap = params.name
-          console.log(this.geoMap)
-        } else {
-          this.geoMap = 'china'
-        }
-        this.init()
-      })
-      window.addEventListener('resize', function() {
-        myChart.resize()
-      })
+      return option
     }
-    // a() {
-    //   mapChartInstance.on('click', async chinaParam => {
-    //     const proviceName = chinaParam.name
-    //     const len = this.const.provinceList.filter(item => {
-    //       return item === proviceName
-    //     }).length
-    //     // 全国才可以点击 ，目前只支持这几个市的点击
-    //     if (len > 0) {
-    //       this.$emit('mapClick', proviceName)
-    //     }
-    //   })
-    // }
   },
   computed: {},
   watch: {}
@@ -254,7 +239,7 @@ export default {
 
 <style lang="scss" scoped>
 .inner-box {
-  .main {
+  .map-box {
     background-color: #18446b;
   }
 }

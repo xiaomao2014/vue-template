@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import store from './store'
+
+// 引入axios
+import axios from 'axios'
+
 // 引入全局mixins
 import Mixin from './mixins'
 // 引入echarts
@@ -26,9 +30,7 @@ import _ from 'lodash'
 Vue.prototype._ = _
 // 使用echarts
 Vue.prototype.$echarts = echarts
-
-// 引入axios
-// import axios from 'axios'
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 // 环境变量

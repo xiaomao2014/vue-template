@@ -74,6 +74,10 @@
       <mapData />
     </div>
     <div>
+      <div>使用本地json文件创建echarts地图</div>
+      <mapJsonData />
+    </div>
+    <div>
       <radarData
         :curMonthsData="areaCurMonthsRadarData"
         :sixMonthsData="areaSixMonthsRadarData"
@@ -94,12 +98,13 @@ console.log(_.chunk(['a', 'b', 'c', 'd'], 1))
 // 引入mapState
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex'
 import mapData from '@/components/Page3/mapData'
+import mapJsonData from '@/components/Page3/mapJsonData'
 import radarData from '@/components/Page3/radarData'
 import pieData from '@/components/Page3/pieData'
 export default {
   name: 'Page3',
   // mixins: [],
-  components: { mapData, radarData, pieData },
+  components: { mapData, radarData, pieData, mapJsonData },
   // props,
   data() {
     return {
