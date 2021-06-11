@@ -1,6 +1,6 @@
 <template>
   <div class="inner-box">
-    <div id="main" style="width: 800px;height: 500px;"></div>
+    <div class="main" id="main" style="width: 800px;height: 500px;"></div>
   </div>
 </template>
 
@@ -251,4 +251,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.inner-box {
+  .main {
+    background-color: #18446b;
+  }
+}
+</style>
