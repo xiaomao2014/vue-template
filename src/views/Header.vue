@@ -89,7 +89,7 @@ export default {
 .header-box {
   width: 100%;
   height: 61px;
-  //z-index: 2008;
+  z-index: 9999;
   position: fixed;
   top: 0;
   left: 0;

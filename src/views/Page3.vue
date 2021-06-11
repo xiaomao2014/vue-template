@@ -70,7 +70,16 @@
       @closeDialog="closeDialogHandle"
     />
     <h3>10、echarts图表使用</h3>
-    <mapData />
+    <div>
+      <mapData />
+    </div>
+    <div>
+      <radarData
+        :curMonthsData="areaCurMonthsRadarData"
+        :sixMonthsData="areaSixMonthsRadarData"
+        :indicator="userIndicator"
+      />
+    </div>
   </div>
 </template>
 
@@ -82,10 +91,11 @@ console.log(_.chunk(['a', 'b', 'c', 'd'], 1))
 // 引入mapState
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex'
 import mapData from '@/components/Page3/mapData'
+import radarData from '@/components/Page3/radarData'
 export default {
   name: 'Page3',
   // mixins: [],
-  components: { mapData },
+  components: { mapData, radarData },
   // props,
   data() {
     return {
@@ -143,7 +153,24 @@ export default {
       ],
       // 弹窗组件数据
       title: '弹窗标题',
-      dialogVisible: false
+      dialogVisible: false,
+      // 雷达图
+      userIndicator: [
+        {
+          name: '网关性能',
+          axisLabel: {
+            show: true,
+            textStyle: { fontSize: 18, color: '#586779' }
+          },
+          max: 350
+        },
+        { name: '接入网性能', max: 350 },
+        { name: '驻地网性能', max: 350 },
+        { name: '业务承载性能', max: 350 },
+        { name: 'Wifi性能', max: 350 }
+      ],
+      areaSixMonthsRadarData: [100, 12, 69, 320, 245], // 当前地区用户业务质量综合分析近六个月的
+      areaCurMonthsRadarData: [25, 69, 58, 189, 214] // 当前地区用户业务质量综合分析本月的
     }
   },
   created() {},
