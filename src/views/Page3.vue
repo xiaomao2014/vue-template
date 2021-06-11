@@ -80,6 +80,9 @@
         :indicator="userIndicator"
       />
     </div>
+    <div>
+      <pieData :pieDataObj="pieDataObj" />
+    </div>
   </div>
 </template>
 
@@ -92,10 +95,11 @@ console.log(_.chunk(['a', 'b', 'c', 'd'], 1))
 import { mapMutations, mapState, mapActions, mapGetters } from 'vuex'
 import mapData from '@/components/Page3/mapData'
 import radarData from '@/components/Page3/radarData'
+import pieData from '@/components/Page3/pieData'
 export default {
   name: 'Page3',
   // mixins: [],
-  components: { mapData, radarData },
+  components: { mapData, radarData, pieData },
   // props,
   data() {
     return {
@@ -170,7 +174,31 @@ export default {
         { name: 'Wifi性能', max: 350 }
       ],
       areaSixMonthsRadarData: [100, 12, 69, 320, 245], // 当前地区用户业务质量综合分析近六个月的
-      areaCurMonthsRadarData: [25, 69, 58, 189, 214] // 当前地区用户业务质量综合分析本月的
+      areaCurMonthsRadarData: [25, 69, 58, 189, 214], // 当前地区用户业务质量综合分析本月的
+      // 玫瑰图
+      pieDataObj: [
+        {
+          value: 20,
+          name: '异常投诉单数',
+          itemStyle: { color: '#7ECF51' }
+        },
+        { value: 30, name: '重复投诉单数', itemStyle: { color: '#61A5E8' } },
+        {
+          value: 40,
+          name: '回访不满意单数',
+          itemStyle: { color: '#E16757' }
+        },
+        {
+          value: 50,
+          name: '用后即评装机单数',
+          itemStyle: { color: '#E3935D' }
+        },
+        {
+          value: 60,
+          name: '用户感知不满意单数',
+          itemStyle: { color: '#EECB5F' }
+        }
+      ]
     }
   },
   created() {},
