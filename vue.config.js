@@ -15,7 +15,7 @@ module.exports = {
       errors: true
     },
     host: 'localhost',
-    port: 8081, // 端口号
+    port: 8082, // 端口号
     open: true, // 配置后自动启动浏览器
     hotOnly: true, // 热更新
     // 配置跨域代理

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+// import echarts from 'echarts'
 export default {
   name: 'mapJsonData',
   // mixins: [],
@@ -128,7 +128,7 @@ export default {
       this.myMapChart = this.$echarts.init(document.getElementById('map-box'))
       this.$axios.get('/map/json/' + val + '.json').then(res => {
         console.log(res)
-        echarts.registerMap(val, res.data)
+        this.$echarts.registerMap(val, res.data)
         let option = this.getOption(val)
         this.myMapChart.clear() // 清空图画
         this.myMapChart.setOption(option)

@@ -87,6 +87,18 @@
     <div>
       <pieData :pieDataObj="pieDataObj" />
     </div>
+    <h3>11、vue-baiduMap使用</h3>
+    <div>
+      <BaiduMap />
+    </div>
+    <h3>12、vue-amap使用</h3>
+    <div>
+      <GaodeMap />
+    </div>
+    <div>
+      <h3>高德海量打点</h3>
+      <AMapMass />
+    </div>
   </div>
 </template>
 
@@ -101,10 +113,21 @@ import mapData from '@/components/Page3/mapData'
 import mapJsonData from '@/components/Page3/mapJsonData'
 import radarData from '@/components/Page3/radarData'
 import pieData from '@/components/Page3/pieData'
+import BaiduMap from '@/components/Page3/BaiduMap.vue'
+import GaodeMap from '@/components/Page3/GaodeMap.vue'
+import AMapMass from '@/components/Page3/AMapMass.vue'
 export default {
   name: 'Page3',
   // mixins: [],
-  components: { mapData, radarData, pieData, mapJsonData },
+  components: {
+    mapData,
+    radarData,
+    pieData,
+    mapJsonData,
+    BaiduMap,
+    GaodeMap,
+    AMapMass
+  },
   // props,
   data() {
     return {
