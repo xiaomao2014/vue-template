@@ -18,7 +18,7 @@ export default {
       map: null,
       styleObjectArr: [],
       massMarks: null,
-      marker: {},
+      marker: null,
       mapData: [],
       center: [116.403995, 39.915111], // 地图中心点
       infoWindow: null,
@@ -28,16 +28,34 @@ export default {
   created() {},
   mounted() {
     lazyAMapApiLoaderInstance.load().then(() => {
-      this.getMapData()
+      this.init()
     })
   },
   methods: {
+    // 初始化地图
+    init() {
+      // 创建地图
+      this.map = null
+      // eslint-disable-next-line no-undef
+      this.map = new AMap.Map('amap-test', {
+        // amap-test为地图容器
+        center: this.center,
+        resizeEnable: true, // 是否监控地图容器尺寸变化
+        zoomEnable: true, // 是否可滚轮缩放
+        dragEnable: true, //是否可拖拽
+        zoom: 7
+        // mapStyle: 'amap://styles/darkblue'
+        // keyboardEnable: false, //键盘控制'↑' '→' '↓' '←'
+        // doubleClickZoom: false, //地图是否可通过双击鼠标放大地图
+      })
+      this.getMapData() // 创建海量点marker
+    },
     // 获得接口数据
     getMapData() {
       let _this = this
       // 封装万级数据
       let testArr1 = []
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 1000; i++) {
         let obj = {}
         obj.id = i
         obj.type = '2G'
@@ -55,7 +73,7 @@ export default {
       }
       // console.log(testArr1)
       let testArr2 = []
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 1000; i++) {
         let obj = {}
         obj.id = i
         obj.type = '4G'
@@ -128,25 +146,7 @@ export default {
       // console.log(_this.center)
       _this.mapData = []
       _this.mapData = resArr
-      _this.init() // 初始化地图
-    },
-    // 初始化地图
-    init() {
-      // 创建地图
-      this.map = null
-      // eslint-disable-next-line no-undef
-      this.map = new AMap.Map('amap-test', {
-        // amap-test为地图容器
-        center: this.center,
-        resizeEnable: true, // 是否监控地图容器尺寸变化
-        zoomEnable: true, // 是否可滚轮缩放
-        dragEnable: true, //是否可拖拽
-        zoom: 7
-        // mapStyle: 'amap://styles/darkblue'
-        // keyboardEnable: false, //键盘控制'↑' '→' '↓' '←'
-        // doubleClickZoom: false, //地图是否可通过双击鼠标放大地图
-      })
-      this.getMassMarks() // 创建海量点marker
+      _this.getMassMarks() // 初始化地图
     },
     // 创建海量点marker
     getMassMarks() {
@@ -196,7 +196,7 @@ export default {
 
       // 创建marker
       // eslint-disable-next-line no-undef
-      // _this.marker = new AMap.Marker({ content: ' ', map: _this.map })
+      _this.marker = new AMap.Marker({ content: '', map: _this.map })
 
       // 3.将 massMarks 添加到地图实例
       _this.massMarks.setMap(_this.map)
@@ -216,7 +216,7 @@ export default {
 
       // 4.鼠标移入移出效果
       _this.massMarks.on('mouseover', function(e) {
-        console.log(e)
+        // console.log(e)
         // 打开默认的窗体
         // _this.marker.setPosition(e.data.lnglat)
         // _this.marker.setLabel({ content: e.data.name })

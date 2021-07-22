@@ -15,21 +15,6 @@ export default {
   props: {},
   data() {
     return {
-      // 点标记的坐标
-      center: [
-        {
-          id: 1,
-          position: [116.205467, 39.907761]
-        },
-        {
-          id: 2,
-          position: [116.368904, 39.913423]
-        },
-        {
-          id: 3,
-          position: [116.305467, 39.807761]
-        }
-      ],
       markerList: [],
       map: null,
       marker: null,
