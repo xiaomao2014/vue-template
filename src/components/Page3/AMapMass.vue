@@ -1,4 +1,4 @@
-<!--海量打点-->
+<!--海量点标记-->
 <template>
   <div class="gaode-amap-box">
     <div id="amap-test"></div>
@@ -20,7 +20,7 @@ export default {
       massMarks: null,
       marker: {},
       mapData: [],
-      center: [120.27643, 30.1527], // 地图中心点
+      center: [116.403995, 39.915111], // 地图中心点
       infoWindow: null,
       cluster: null
     }
@@ -53,7 +53,7 @@ export default {
         ]
         testArr1.push(obj)
       }
-      console.log(testArr1)
+      // console.log(testArr1)
       let testArr2 = []
       for (let i = 1; i <= 100; i++) {
         let obj = {}
@@ -71,9 +71,9 @@ export default {
         ]
         testArr2.push(obj)
       }
-      console.log(testArr2)
+      // console.log(testArr2)
       let testArr3 = []
-      for (let i = 1; i <= 100; i++) {
+      for (let i = 1; i <= 500; i++) {
         let obj = {}
         obj.id = i
         obj.type = '5G'
@@ -89,9 +89,9 @@ export default {
         ]
         testArr3.push(obj)
       }
-      console.log(testArr3)
+      // console.log(testArr3)
       let resArr = testArr1.concat(testArr2).concat(testArr3)
-      console.log(resArr)
+      // console.log(resArr)
       resArr.forEach(item => {
         if (item.type === '2G') {
           item.style = 0
@@ -138,9 +138,13 @@ export default {
       this.map = new AMap.Map('amap-test', {
         // amap-test为地图容器
         center: this.center,
-        resizeEnable: true,
+        resizeEnable: true, // 是否监控地图容器尺寸变化
+        zoomEnable: true, // 是否可滚轮缩放
+        dragEnable: true, //是否可拖拽
         zoom: 7
         // mapStyle: 'amap://styles/darkblue'
+        // keyboardEnable: false, //键盘控制'↑' '→' '↓' '←'
+        // doubleClickZoom: false, //地图是否可通过双击鼠标放大地图
       })
       this.getMassMarks() // 创建海量点marker
     },
@@ -347,4 +351,13 @@ export default {
 .amap-copyright {
   display: none !important;
 }
+//最后一层marker图标自定义
+//.amap-marker .amap-marker-content div {
+//  background-image: url('../../assets/images/2G.png');
+//  background-color: rgba(0, 0, 0, 0) !important;
+//  border: 0px !important;
+//  border-radius: 0% !important;
+//  box-shadow: 0 0 0 0 !important;
+//  line-height: 79px !important;
+//}
 </style>
