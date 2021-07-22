@@ -55,7 +55,7 @@ export default {
       let _this = this
       // 封装万级数据
       let testArr1 = []
-      for (let i = 1; i <= 1000; i++) {
+      for (let i = 1; i <= 100; i++) {
         let obj = {}
         obj.id = i
         obj.type = '2G'
@@ -73,7 +73,7 @@ export default {
       }
       // console.log(testArr1)
       let testArr2 = []
-      for (let i = 1; i <= 1000; i++) {
+      for (let i = 1; i <= 100; i++) {
         let obj = {}
         obj.id = i
         obj.type = '4G'

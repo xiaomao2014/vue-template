@@ -99,6 +99,10 @@
       <h3>高德海量打点</h3>
       <AMapMass />
     </div>
+    <div>
+      <h3>高德海量点展示-百万级聚合AMap.UI 组件库 PointSimplifier</h3>
+      <AMapPointSimplifier />
+    </div>
   </div>
 </template>
 
@@ -116,6 +120,7 @@ import pieData from '@/components/Page3/pieData'
 import BaiduMap from '@/components/Page3/BaiduMap.vue'
 import GaodeMap from '@/components/Page3/GaodeMap.vue'
 import AMapMass from '@/components/Page3/AMapMass.vue'
+import AMapPointSimplifier from '@/components/Page3/AMapPointSimplifier.vue'
 export default {
   name: 'Page3',
   // mixins: [],
@@ -126,7 +131,8 @@ export default {
     mapJsonData,
     BaiduMap,
     GaodeMap,
-    AMapMass
+    AMapMass,
+    AMapPointSimplifier
   },
   // props,
   data() {
