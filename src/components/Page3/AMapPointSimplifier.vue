@@ -35,8 +35,17 @@ export default {
       // eslint-disable-next-line no-undef
       _this.map = new AMap.Map('test', {
         center: this.center,
-        zooms: [3, 18]
+        zooms: [4, 18]
       })
+      _this.testData()
+    },
+
+    // 随机创建一批点，仅作示意
+    testData() {
+      let _this = this
+      let data1 = _this.createPoints('2G', _this.map.getCenter(), 20)
+      let data2 = _this.createPoints('4G', _this.map.getCenter(), 20)
+      let data3 = _this.createPoints('5G', _this.map.getCenter(), 20)
       // 加载海量点组件
       // eslint-disable-next-line no-undef
       AMapUI.loadUI(['misc/PointSimplifier'], PointSimplifier => {
@@ -45,16 +54,48 @@ export default {
           return
         }
         // 启动页面
-        _this.initPage(PointSimplifier)
+        _this.initPage(PointSimplifier, data1, 2)
+        _this.initPage(PointSimplifier, data2, 4)
+        _this.initPage(PointSimplifier, data3, 5)
       })
     },
+    // 随机创建一批点
+    createPoints(type, center, num) {
+      let data = []
+      for (let i = 0, len = num; i < len; i++) {
+        data.push({
+          // position数据格式：position:[115.3662,39.14536]
+          position: [
+            center.getLng() + (Math.random() > 0.5 ? 1 : -1) * Math.random(),
+            center.getLat() + (Math.random() > 0.5 ? 1 : -1) * Math.random()
+          ],
+          id: '我是ID：' + i,
+          name: '我的名字是张' + i,
+          style: type
+        })
+      }
+      console.log(data)
+      return data
+    },
     // 启动页面
-    initPage(PointSimplifier) {
+    initPage(PointSimplifier, data, type) {
       let _this = this
+      // 自定义图标
+      let icon = ''
+      if (type === 2) {
+        icon = require('../../assets/images/2G.png')
+      }
+      if (type === 4) {
+        icon = require('../../assets/images/4G.png')
+      }
+      if (type === 5) {
+        icon = require('../../assets/images/5G.png')
+      }
       // 创建组件实例
       _this.pointSimplifierIns = new PointSimplifier({
         //关联的map
         map: _this.map,
+        // zIndex: zIndex,
 
         // 数据源中靠后的元素优先，index大的排到前面去
         compareDataItem: function(a, b, aIndex, bIndex) {
@@ -72,10 +113,12 @@ export default {
           let content1 =
             '<div>id：' + dataItem.id + '</div>' + '我是索引：' + idx
           let content2 = '<div>name：' + dataItem.name + '</div>'
+          let content3 = '<div>style：' + dataItem.style + '</div>'
           let content =
             "<div style='border:1px solid #6290eb;padding:5px;font-size:16px;border-radius: 5px;background-color: rgba(19, 28, 45,0.7);color:#fff;box-shadow:0 0 9px 1px #6290eb;'>" +
             content1 +
             content2 +
+            content3 +
             '</div>'
           return content
         },
@@ -86,8 +129,9 @@ export default {
           pointStyle: {
             // content的取值有两类1.{string}, 可以是 rect（矩形）, circle（圆形），none（空）2.{function},根据矩形范围，描绘出点的形状路径或者绘制 图片。
             content: PointSimplifier.Render.Canvas.getImageContent(
-              // 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png',
-              require('../../assets/images/2G.png'),
+              // 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png', // 外部引入
+              // require('../../assets/images/2G.png'), // 自定义图片
+              icon,
               function onload() {
                 _this.pointSimplifierIns.renderLater()
               },
@@ -120,7 +164,7 @@ export default {
       })
 
       // 随机创建一批点，仅作示意
-      let data = _this.createPoints(_this.map.getCenter(), 100)
+      // let data = _this.createPoints(_this.map.getCenter(), 100000)
 
       // 设置数据源，data需要是一个数组
       // console.log(data)
@@ -129,29 +173,12 @@ export default {
       // 监听事件
       _this.pointSimplifierIns.on(
         'pointClick pointMouseover pointMouseout',
+        // eslint-disable-next-line no-unused-vars
         function(e, record) {
-          console.log(e)
-          console.log(e.type, record)
+          // console.log(e)
+          // console.log(e.type, record)
         }
       )
-    },
-    // 随机创建一批点
-    createPoints(center, num) {
-      let data = []
-      for (let i = 0, len = num; i < len; i++) {
-        data.push({
-          // position数据格式：position:[115.3662,39.14536]
-          position: [
-            center.getLng() + (Math.random() > 0.5 ? 1 : -1) * Math.random(),
-            center.getLat() + (Math.random() > 0.5 ? 1 : -1) * Math.random()
-          ],
-          id: '我是ID：' + i,
-          name: '我的名字是张' + i,
-          style: Math.floor(Math.random() * 6)
-        })
-      }
-      console.log(data)
-      return data
     }
   },
   computed: {},
@@ -175,6 +202,10 @@ export default {
 }
 </style>
 <style lang="scss">
+.amap-logo,
+.amap-copyright {
+  display: none !important;
+}
 //更改弹窗样式
 .dialogBox {
   //border: 1px solid red !important;
