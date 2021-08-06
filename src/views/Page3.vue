@@ -99,7 +99,7 @@
       <h3>高德海量打点</h3>
       <AMapMass />
     </div>
-    <div>
+    <div style="height: 900px">
       <h3>高德海量点展示-百万级聚合AMap.UI 组件库 PointSimplifier</h3>
       <AMapPointSimplifier />
     </div>
